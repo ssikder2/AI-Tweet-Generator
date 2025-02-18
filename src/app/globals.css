@@ -1,0 +1,154 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-y: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 55px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.generate-input{
+  position: relative;
+  border: 1px solid whitesmoke;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.generate-input h2 {
+  font-size: 18px;
+}
+
+textarea {
+  max-width: 100%;
+  min-height: 100px;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: large;
+}
+
+.style-select {
+  padding: 8px 12px;
+  font-size: large;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.style-select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  padding-right: 40px; 
+}
+
+.isImage {
+  margin: 0 7px 20px 0;
+  font-size: large;
+  cursor: pointer;
+}
+
+.generate-button {
+  background-color: #26a7de;
+  border: 1px solid #26a7de;
+  border-radius: 6px;
+  height: 50px;
+  font-size: larger;
+  font-weight: bold;
+  color: white;
+}
+
+.generated-tweet {
+  margin-top: 75px;
+  margin-bottom: 100px;
+  position: relative;
+  width: 520px;
+  border: 1px solid whitesmoke;
+  box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f3f4f8;
+  padding: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tweet-message {
+  color: black;
+  font-family: monospace, 'Courier New', Courier;
+  margin: 0;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.privacy {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.generated-tweet {
+  color: #26a7de;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+  padding-top: 20px;
+}
+
+.icons {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  list-style: none;
+  font-size: large;
+}
+
+.tweet-button {
+  background-color: #26a7de;
+  border: none;
+  height: 35px;
+  padding: 7px 20px 7px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+
+
+
+
+
