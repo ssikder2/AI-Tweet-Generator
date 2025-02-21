@@ -1,3 +1,5 @@
+# [Click here to try it out!](https://ai-tweet-generator-zeta.vercel.app/)
+
 # AI Tweet Generator
 
 An AI-powered tweet generator built with Next.js and React that creates engaging tweets using ChatGPT and generates matching images using DALL-E.
