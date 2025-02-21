@@ -7,6 +7,7 @@ export default function App() {
   const [inputText, setInputText] = useState('')
   const [style, setStyle] = useState('funny')
   const [isImage, setIsImage] = useState(false)
+  const [imageURL, setImageUrl] = useState(null)
   const [generatedTweet, setGeneratedTweet] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -25,6 +26,9 @@ export default function App() {
   const generateTweet = async () => {
     if (!inputText) return
 
+    setImageUrl(null)
+    setGeneratedTweet('')
+
     setIsLoading(true)
     try {
       const response = await fetch('api/gpt', {
@@ -37,13 +41,26 @@ export default function App() {
           style: style
         }),
       })
-
       const data = await response.json()
+
       if (data.error){
         throw new Error(data.error)
       }
 
       setGeneratedTweet(data.tweet)
+
+      if (isImage) {
+        const imageResponse = await fetch('/api/dall-e',{
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ topic: inputText, style })
+        })
+        const imageData = await imageResponse.json()
+        setImageUrl(imageData.imageURL)
+      } else{
+        setImageUrl(null)
+      }
+
     } catch (error) {
       console.error('Error:', error)
       alert('Failed to generate tweet')
@@ -53,7 +70,7 @@ export default function App() {
   }
   
   return (
-    <div>
+    <div> 
       <h1 className="header">Generate your next Tweet using AI</h1>
       <div className="generate-input">
         <h2>1. Write the topic you want to tweet about.</h2>
@@ -91,7 +108,7 @@ export default function App() {
           {isLoading ? 'Generating...' : 'Generate Your Tweet'}
         </button>
       </div>
-      {Boolean(generatedTweet) && <Tweet content={generatedTweet}/>}
+      {Boolean(generatedTweet) && <Tweet content={generatedTweet} imageUrl={imageURL} isLoading={isLoading}/>}
     </div>
   )
 }

@@ -147,7 +147,20 @@ textarea {
   color: white;
 }
 
+.image {
+  margin-top: -25px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  width: 100%
+}
 
+.loading-image {
+  color: black;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 

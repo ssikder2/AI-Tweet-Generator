@@ -1,5 +1,5 @@
-import OpenAI from 'openai'
-import { NextResponse } from 'next/server'
+import OpenAI from "openai"
+import { NextResponse } from "next/server"
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
@@ -8,7 +8,7 @@ const openai = new OpenAI({
 export const runtime = 'edge';
 
 const rateLimit = new Map()
-const RATE_LIMIT = 10
+const RATE_LIMIT = 5
 const TIME_WINDOW = 60 * 60 * 1000
 
 export async function POST(request) {
@@ -22,7 +22,7 @@ export async function POST(request) {
         
         if (recentRequests.length >= RATE_LIMIT) {
             return NextResponse.json(
-                { error: 'Rate limit exceeded. Please try again in an hour.' },
+                { error: 'Image Generation Rate limit exceeded. Please try again in an hour.' },
                 { status: 429 }
             )
         }
@@ -39,19 +39,21 @@ export async function POST(request) {
             )
         }
 
-        const prompt = `You are a copywritter who is an expert at writing engaging statements.
-                        You will write a tweet about ${topic} in a ${style} style.
-                        You always start with a strong hook to capture attention. Your posts are less than 280 characters long,
-                        and they are written in short concise and catchy sentences. 
-                        You NEVER write hashtags or emojis. Don't use dashes.`
+        const prompt = `Create a highly detailed, visually striking image that perfectly complements a tweet about ${topic}. 
+                        The style should be ${style}, making it engaging, modern, and captivating. 
+                        The image should evoke curiosity and emotion while maintaining a clean and aesthetically pleasing look. 
+                        Avoid text overlays and unnecessary distractions—focus on compelling visuals that tell a story at a glance.`
         
-        const completion = await openai.chat.completions.create({
-            messages: [{ role: "user", content: prompt}],
-            model: "gpt-4o-mini"
+        const response = await openai.images.generate({
+            prompt: prompt,
+            model: "dall-e-3",
+            size: "1024x1024",
+            quality: "hd",
+            n: 1
         })
-        return Response.json({ tweet: completion.choices[0].message.content })
+        const imageURL = response.data[0].url
+        return NextResponse.json({ imageURL })
     } catch (error) {
         return Response.json({ error: error.message}, { status: 500 })
     }
 }
-
