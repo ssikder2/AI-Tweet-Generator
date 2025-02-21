@@ -51,7 +51,7 @@ npm run dev
 
 ## API Rate Limits
 
-- Tweet generation: 5 requests per hour
+- Tweet generation: 10 requests per hour
 - Image generation: 5 requests per hour
 
 ## Environment Variables
