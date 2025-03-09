@@ -16,6 +16,7 @@ An AI-powered tweet generator built with Next.js and React that creates engaging
 
 - Next.js 14
 - React
+- Typescript
 - OpenAI API (GPT-4 and DALL-E 3)
 - Font Awesome for icons
 
